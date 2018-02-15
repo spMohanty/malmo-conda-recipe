@@ -1,0 +1,33 @@
+package:
+  name: malmo
+  version: 0.31.0
+
+source:
+  fn: 0.31.0.tar.gz
+  url: https://github.com/Microsoft/malmo/archive/0.31.0.tar.gz
+  sha1: 68cc0b19daa0837b6aa61cd64b36c62e726519b3
+
+requirements:
+  build:
+    - python
+    - boost
+    - ffmpeg
+    - swig
+    - doxygen
+    - git
+    - cmake
+    - openjdk
+  run:
+    - python
+    - boost
+    - ffmpeg
+    - swig
+    - doxygen
+    - git
+    - cmake
+    - openjdk
+
+about:
+  home: https://www.microsoft.com/en-us/research/project/project-malmo/
+  license: "MIT License"
+  summary: "Project Malmo is a platform for Artificial Intelligence experimentation and research built on top of Minecraft"
