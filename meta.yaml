@@ -1,33 +1,39 @@
 package:
   name: malmo
-  version: 0.31.0
+  version: 0.31.0.0
 
 source:
-  fn: 0.31.0.tar.gz
-  url: https://github.com/Microsoft/malmo/archive/0.31.0.tar.gz
-  sha1: 68cc0b19daa0837b6aa61cd64b36c62e726519b3
+  git_url: https://github.com/Microsoft/malmo.git
+  git_rev: 0.31.0
+
+build:
+  number: 1
 
 requirements:
   build:
+    - cmake
     - python
     - boost
+    - boost-python
     - ffmpeg
-    - swig
-    - doxygen
-    - git
-    - cmake
     - openjdk
+    - xerces-c
+    - mono
+    - doxygen
+    - xsd-marlo # From crowdAI channel. Also, Careful about the order, mono and xsd write the same binary named xsd
   run:
     - python
     - boost
+    - boost-python
     - ffmpeg
-    - swig
-    - doxygen
-    - git
-    - cmake
     - openjdk
+    - xerces-c
+    - mono
+    - xsd-marlo
 
 about:
   home: https://www.microsoft.com/en-us/research/project/project-malmo/
   license: "MIT License"
-  summary: "Project Malmo is a platform for Artificial Intelligence experimentation and research built on top of Minecraft"
+  summary: "Conda package for Project Malmo, a platform for Artificial Intelligence experimentation and research built on top of Minecraft"
+  author: "S.P. Mohanty"
+  email: "sharada.mohanty@epfl.ch"
