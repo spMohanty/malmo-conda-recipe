@@ -11,25 +11,29 @@ build:
 
 requirements:
   build:
-    - cmake
     - python
-    - boost
-    - boost-python
+    - cmake
+    - boost 1.66.*
+    - boost-python 1.66.*
     - ffmpeg
-    - openjdk
-    - xerces-c
+    - openjdk 8.*
+    - xerces-c 3.2.*
     - mono
     - doxygen
-    - xsd-marlo # From crowdAI channel. Also, Careful about the order, mono and xsd write the same binary named xsd
+    - xsd-marlo
+    - curl
   run:
     - python
-    - boost
-    - boost-python
+    - boost 1.66.*
+    - boost-python 1.66.*
     - ffmpeg
-    - openjdk
-    - xerces-c
+    - openjdk 8.*
+    - xerces-c 3.2.*
     - mono
     - xsd-marlo
+    - curl
+  rpaths:
+
 
 about:
   home: https://www.microsoft.com/en-us/research/project/project-malmo/
