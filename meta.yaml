@@ -6,6 +6,7 @@ source:
   git_url: https://github.com/Microsoft/malmo.git
   git_rev: 0.31.0
 
+
 build:
   number: 1
 
@@ -13,7 +14,7 @@ requirements:
   build:
     - python {{ python }}
     - cmake
-    - boost
+    - boost {{ boost }}
     - ffmpeg
     - openjdk 8.*
     - xerces-c 3.2.*
@@ -21,17 +22,23 @@ requirements:
     - doxygen
     - xsd-marlo
     - curl
+    - gcc # [linux]
+    - pthread-stubs # [linux]
+    - swig # [linux]
+    - icu # [linux]
   run:
     - python {{ python }}
-    - boost
+    - boost {{ boost }}
     - ffmpeg
     - openjdk 8.*
     - xerces-c 3.2.*
     - mono
     - xsd-marlo
     - curl
-  rpaths:
-
+    - gcc # [linux]
+    - pthread-stubs # [linux]
+    - swig # [linux]
+    - icu # [linux]
 
 about:
   home: https://www.microsoft.com/en-us/research/project/project-malmo/
