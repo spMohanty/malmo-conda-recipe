@@ -14,7 +14,7 @@ requirements:
   build:
     - python {{ python }}
     - cmake
-    - boost {{ boost }}
+    - boost 1.66
     - ffmpeg
     - openjdk 8.*
     - xerces-c 3.2.*
@@ -28,7 +28,7 @@ requirements:
     - icu # [linux]
   run:
     - python {{ python }}
-    - boost {{ boost }}
+    - boost 1.66
     - ffmpeg
     - openjdk 8.*
     - xerces-c 3.2.*

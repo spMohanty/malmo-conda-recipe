@@ -18,6 +18,7 @@ echo "Python Version ${PYTHON_VERSION}"
 
 # Custom changes for py35 and py36
 # TODO: Send pullrequest to Microsoft/Malmo
+# Ideally these should be handled by the Malmo CMakeLists.txt
 if [ ${PY3K} -eq 1 ]; then
   sed -i -e 's/date_time filesystem iostreams program_options python regex system/date_time filesystem iostreams program_options python3 regex system/g' CMakeLists.txt
   sed -i -e 's/USE_PYTHON_VERSIONS 2.7/USE_PYTHON_VERSIONS ${PYTHON_VERSION}/g' CMakeLists.txt
@@ -44,6 +45,9 @@ if [ "$(uname)" == "Darwin" ]; then
     -DBUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DSTATIC_BOOST=On \
+    -DBOOST_INCLUDEDIR=${PREFIX}/include \
+    -DBOOST_LIBRARYDIR=${PREFIX}/lib \
+    -DUSE_PYTHON_VERSIONS_DESC=${PYTHON_VERSION} \
     ../
 
   make -j${CPU_COUNT}
