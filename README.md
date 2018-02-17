@@ -19,9 +19,6 @@ malmo-server -port 10001 # For launching the minecraft client
 - [x] linux64/py27
 - [x] linux64/py35
 - [x] linux64/py36
-- [ ] linux32/py27
-- [ ] linux32/py35
-- [ ] linux32/py36
 - [ ] win64/py27
 - [ ] win64/py35
 - [ ] win64/py36
