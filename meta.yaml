@@ -11,10 +11,9 @@ build:
 
 requirements:
   build:
-    - python
+    - python {{ python }}
     - cmake
-    - boost 1.66.*
-    - boost-python 1.66.*
+    - boost
     - ffmpeg
     - openjdk 8.*
     - xerces-c 3.2.*
@@ -23,9 +22,8 @@ requirements:
     - xsd-marlo
     - curl
   run:
-    - python
-    - boost 1.66.*
-    - boost-python 1.66.*
+    - python {{ python }}
+    - boost
     - ffmpeg
     - openjdk 8.*
     - xerces-c 3.2.*

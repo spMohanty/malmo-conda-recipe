@@ -3,8 +3,6 @@
 INCLUDE_PATH=$PREFIX/include
 LIBRARY_PATH=$PREFIX/lib
 
-export PYTHON_INCLUDE_DIR=`python -c "from __future__ import print_function; import distutils.sysconfig; print(distutils.sysconfig.get_python_inc(True))"`
-
 echo "Source DIR : ${SRC_DIR}"
 echo "PREFIX : ${PREFIX}"
 echo "RECIPE DIR : ${RECIPE_DIR}"
@@ -27,12 +25,12 @@ export TERM=${TERM:-dumb} #Dummy $TERM variable to make gradle happy
 cmake \
   -DBUILD_DOCUMENTATION=Off \
   -DINCLUDE_CSHARP=Off \
+  -DUSE_PYTHON_VERSIONS=${PYTHON_VERSION} \
   -DXSD_EXECUTABLE=$PREFIX/bin/xsd-marlo \
   -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -L${PREFIX}/lib -lxerces-c -Wunused-command-line-argument" \
   -DBUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX=${PREFIX} \
   ../
-  ## -DCMAKE_INSTALL_PREFIX=${PREFIX} \ doesnt seem to work for some reason :-?
 
 make -j${CPU_COUNT}
 make install
@@ -43,7 +41,8 @@ cp -r ${SRC_DIR}/build/install/Minecraft ${PREFIX}/Minecraft
 cp ${SRC_DIR}/build/install/Python_Examples/MalmoPython.so ${SP_DIR}/
 
 cp -r ${SRC_DIR}/build/install ${PREFIX}/install
-ln -s ${PREFIX}/install/Minecraft/launchClient.sh ${PREFIX}/bin/malmo-server
+cp ${RECIPE_DIR}/extra_files/malmo-server ${PREFIX}/bin/malmo-server
+chmod +x ${PREFIX}/bin/malmo-server
 
 
 # exit 1
