@@ -4,6 +4,7 @@ Conda recipes for building [Project Malmo](https://github.com/Microsoft/malmo)
 
 The idea is to be able to install [Project Malmo](https://github.com/Microsoft/malmo) just by doing :
 ```
+conda config --add channels conda-forge 
 conda install -c crowdai malmo
 
 python -c "import MalmoPython" #for use of the Python API
