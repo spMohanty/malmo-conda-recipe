@@ -40,12 +40,11 @@ if [ "$(uname)" == "Darwin" ]; then
   cmake \
     -DBUILD_DOCUMENTATION=Off \
     -DINCLUDE_CSHARP=Off \
-    -DXSD_EXECUTABLE=$PREFIX/bin/xsd-marlo \
-    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -L${PREFIX}/lib -lxerces-c -Wunused-command-line-argument" \
+    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -L${PREFIX}/lib -Wunused-command-line-argument" \
     -DBUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DSTATIC_BOOST=On \
-    -DBOOST_INCLUDEDIR=${PREFIX}/include \
+    -DBOOST_INCLUDEDIR=${PREFIX}/include/ \
     -DBOOST_LIBRARYDIR=${PREFIX}/lib \
     -DUSE_PYTHON_VERSIONS_DESC=${PYTHON_VERSION} \
     ../
@@ -59,8 +58,8 @@ if [ "$(uname)" == "Darwin" ]; then
   cp ${SRC_DIR}/build/install/Python_Examples/MalmoPython.so ${SP_DIR}/
 
   cp -r ${SRC_DIR}/build/install ${PREFIX}/install
-  cp ${RECIPE_DIR}/extra_files/malmo-server ${PREFIX}/bin/malmo-server
-  chmod +x ${PREFIX}/bin/malmo-server
+  ln -s ${PREFIX}/Minecraft/launchClient.sh ${PREFIX}/bin/launchClient.sh
+  chmod +x ${PREFIX}/bin/launchClient.sh
 
 fi
 
@@ -69,8 +68,7 @@ if [ "$(uname)" == "Linux" ]; then
     -DBUILD_DOCUMENTATION=Off \
     -DINCLUDE_CSHARP=Off \
     -DINCLUDE_LUA=Off \
-    -DXSD_EXECUTABLE=$PREFIX/bin/xsd-marlo \
-    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -L${PREFIX}/lib -lxerces-c -lpthread" \
+    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -L${PREFIX}/lib -lpthread" \
     -DBUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DSTATIC_BOOST=On \
@@ -88,8 +86,8 @@ if [ "$(uname)" == "Linux" ]; then
   cp ${SRC_DIR}/build/install/Python_Examples/MalmoPython.so ${SP_DIR}/
 
   cp -r ${SRC_DIR}/build/install ${PREFIX}/install
-  cp ${RECIPE_DIR}/extra_files/malmo-server ${PREFIX}/bin/malmo-server
-  chmod +x ${PREFIX}/bin/malmo-server
+  ln -s ${PREFIX}/Minecraft/launchClient.sh ${PREFIX}/bin/launchClient.sh
+  chmod +x ${PREFIX}/bin/launchClient.sh
 fi
 
 # exit 1

@@ -1,10 +1,10 @@
 package:
   name: malmo
-  version: 0.31.0.0
+  version: 0.35.6.0
 
 source:
   git_url: https://github.com/Microsoft/malmo.git
-  git_rev: 0.31.0
+  git_rev: 0.35.6
 
 
 build:
@@ -14,13 +14,11 @@ requirements:
   build:
     - python {{ python }}
     - cmake
-    - boost 1.66
+    - boost 1.67
     - ffmpeg
     - openjdk 8.*
-    - xerces-c 3.2.*
     - mono
     - doxygen
-    - xsd-marlo
     - curl
     - gcc # [linux]
     - pthread-stubs # [linux]
@@ -28,12 +26,10 @@ requirements:
     - icu # [linux]
   run:
     - python {{ python }}
-    - boost 1.66
+    - boost 1.67
     - ffmpeg
     - openjdk 8.*
-    - xerces-c 3.2.*
     - mono
-    - xsd-marlo
     - curl
     - gcc # [linux]
     - pthread-stubs # [linux]
