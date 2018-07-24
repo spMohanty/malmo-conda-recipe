@@ -20,8 +20,9 @@ echo "Python Version ${PYTHON_VERSION}"
 # TODO: Send pullrequest to Microsoft/Malmo
 # Ideally these should be handled by the Malmo CMakeLists.txt
 if [ ${PY3K} -eq 1 ]; then
-  sed -i -e 's/date_time filesystem iostreams program_options python regex system/date_time filesystem iostreams program_options python3 regex system/g' CMakeLists.txt
-  sed -i -e 's/USE_PYTHON_VERSIONS 2.7/USE_PYTHON_VERSIONS ${PYTHON_VERSION}/g' CMakeLists.txt
+  # sed -i -e 's/date_time filesystem iostreams program_options python regex system/date_time filesystem iostreams program_options python3 regex system/g' CMakeLists.txt
+  # sed -i -e 's/USE_PYTHON_VERSIONS 2.7/USE_PYTHON_VERSIONS ${PYTHON_VERSION}/g' CMakeLists.txt
+  echo "pass"
 fi
 
 export MALMO_XSD_PATH=${PREFIX}/Schemas/
@@ -47,6 +48,7 @@ if [ "$(uname)" == "Darwin" ]; then
     -DBOOST_INCLUDEDIR=${PREFIX}/include/ \
     -DBOOST_LIBRARYDIR=${PREFIX}/lib \
     -DUSE_PYTHON_VERSIONS_DESC=${PYTHON_VERSION} \
+    -DMACOS_USE_PYTHON_MODULE=python${CONDA_PY} \
     ../
 
   make -j${CPU_COUNT}
