@@ -108,4 +108,5 @@ if [ "$(uname)" == "Linux" ]; then
   chmod +x ${PREFIX}/bin/launchClient.sh
 fi
 
+rm -rf build
 # exit 1
