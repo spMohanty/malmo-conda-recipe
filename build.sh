@@ -72,8 +72,7 @@ if [ "$(uname)" == "Linux" ]; then
   cmake \
     -DBUILD_DOCUMENTATION=Off \
     -DINCLUDE_CSHARP=Off \
-    -DINCLUDE_LUA=Off \
-    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -L${PREFIX}/lib -lpthread" \
+    -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -L${PREFIX}/lib -lpthread -lstdc++" \
     -DBUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DSTATIC_BOOST=On \
