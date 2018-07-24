@@ -34,6 +34,9 @@ fi
 export MALMO_XSD_PATH=${PREFIX}/Schemas/
 
 cd ${SRC_DIR}
+if [ -d "build" ]; then
+    rm -rf build
+fi
 mkdir build
 cd build
 
@@ -108,5 +111,4 @@ if [ "$(uname)" == "Linux" ]; then
   chmod +x ${PREFIX}/bin/launchClient.sh
 fi
 
-rm -rf build
 # exit 1
