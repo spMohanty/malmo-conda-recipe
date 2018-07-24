@@ -70,9 +70,15 @@ if [ "$(uname)" == "Darwin" ]; then
   # Copy over MalmoPython.so to python site packages
   cp ${SRC_DIR}/build/install/Python_Examples/MalmoPython.so ${SP_DIR}/
 
+  # Copy Over env vars setup scripts
+  mkdir -p ${PREFIX}/etc/conda/activate.d
+  mkdir -p ${PREFIX}/etc/conda/deactivate.d
+  cp ${RECIPE_DIR}/extra_files/env_setup/env_activate.sh ${PREFIX}/etc/conda/activate.d/malmo.sh
+  cp ${RECIPE_DIR}/extra_files/env_setup/env_deactivate.sh ${PREFIX}/etc/conda/deactivate.d/malmo.sh
+  # This sets the MALMO_XSD_PATH path variable and any other required variables
+
+
   cp -r ${SRC_DIR}/build/install ${PREFIX}/install
-  ln -s ${PREFIX}/Minecraft/launchClient.sh ${PREFIX}/bin/launchClient.sh
-  chmod +x ${PREFIX}/bin/launchClient.sh
 fi
 
 if [ "$(uname)" == "Linux" ]; then
@@ -106,8 +112,6 @@ if [ "$(uname)" == "Linux" ]; then
   # This sets the MALMO_XSD_PATH path variable and any other required variables
 
   cp -r ${SRC_DIR}/build/install ${PREFIX}/install
-  ln -s ${PREFIX}/Minecraft/launchClient.sh ${PREFIX}/bin/launchClient.sh
-  chmod +x ${PREFIX}/bin/launchClient.sh
 fi
 
 # exit 1
