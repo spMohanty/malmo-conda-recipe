@@ -20,8 +20,11 @@ echo "Python Version ${PYTHON_VERSION}"
 # TODO: Send pullrequest to Microsoft/Malmo
 # Ideally these should be handled by the Malmo CMakeLists.txt
 if [ ${PY3K} -eq 1 ]; then
-  # sed -i -e 's/date_time filesystem iostreams program_options python regex system/date_time filesystem iostreams program_options python3 regex system/g' CMakeLists.txt
-  # sed -i -e 's/USE_PYTHON_VERSIONS 2.7/USE_PYTHON_VERSIONS ${PYTHON_VERSION}/g' CMakeLists.txt
+  sed -i -e "s/\"python3\"/\"python$CONDA_PY\"/g" CMakeLists.txt
+  # This changes the line here : https://github.com/Microsoft/malmo/blob/master/CMakeLists.txt#L112
+  # from : SET( BOOST_PYTHON_MODULE_NAME "python3" )
+  # to : SET( BOOST_PYTHON_MODULE_NAME "python36" ) (or "python37") depending on the python build.
+  # This lets FindBoost find where boost and boost_python are
   echo "pass"
 fi
 

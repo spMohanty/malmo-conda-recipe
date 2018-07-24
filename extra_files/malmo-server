@@ -1,3 +1,0 @@
-#!/bin/bash
-scriptdir=`dirname "$BASH_SOURCE"`
-${scriptdir}/../install/Minecraft/launchClient.sh $@
