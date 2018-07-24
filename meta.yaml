@@ -20,7 +20,8 @@ requirements:
     - mono
     - doxygen
     - curl
-    - toolchain # [linux]
+    - toolchain # [linux and not py36]
+    - gcc # [linux and py36]
     - pthread-stubs # [linux]
     - swig # [linux]
     - icu # [linux]
@@ -31,7 +32,8 @@ requirements:
     - openjdk 8.*
     - mono
     - curl
-    - toolchain # [linux]
+    - toolchain # [linux and not py36]
+    - gcc # [linux and py36]
     - pthread-stubs # [linux]
     - swig # [linux]
     - icu # [linux]

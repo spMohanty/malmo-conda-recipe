@@ -24,6 +24,9 @@ launchClient.sh -port 10001 # For launching the minecraft client
 - [ ] win32/py36
 
 
+# Notes
+* conda-forge `toolchain` doesnt work with py36+boost1.67, hence we use it only for py37+boost1.67
+and for py36, we use the usual `gcc` instead.
 
 # Usage
 Assuming you have [Anaconda](http://anaconda.org/) installed.

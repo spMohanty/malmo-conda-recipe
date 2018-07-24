@@ -15,16 +15,19 @@ cp ${RECIPE_DIR}/extra_files/FindBoost.cmake ${SRC_DIR}/cmake/
 
 export PYTHON_VERSION="`python -c 'import platform; print(platform.python_version()[:3])'`"
 echo "Python Version ${PYTHON_VERSION}"
-
-# Custom changes for py35 and py36
+echo "CONDA_PY ${CONDA_PY}"
+echo "===================================================="
+printenv
+echo "===================================================="
+# Custom changes for py36 and py37
 # TODO: Send pullrequest to Microsoft/Malmo
 # Ideally these should be handled by the Malmo CMakeLists.txt
 if [ ${PY3K} -eq 1 ]; then
-  sed -i -e "s/\"python3\"/\"python$CONDA_PY\"/g" CMakeLists.txt
-  # This changes the line here : https://github.com/Microsoft/malmo/blob/master/CMakeLists.txt#L112
-  # from : SET( BOOST_PYTHON_MODULE_NAME "python3" )
-  # to : SET( BOOST_PYTHON_MODULE_NAME "python36" ) (or "python37") depending on the python build.
-  # This lets FindBoost find where boost and boost_python are
+    sed -i -e "s/\"python3\"/\"python$CONDA_PY\"/g" CMakeLists.txt
+    # This changes the line here : https://github.com/Microsoft/malmo/blob/master/CMakeLists.txt#L112
+    # from : SET( BOOST_PYTHON_MODULE_NAME "python3" )
+    # to : SET( BOOST_PYTHON_MODULE_NAME "python36" ) (or "python37") depending on the python build.
+    # This lets FindBoost find where boost and boost_python are    
   echo "pass"
 fi
 
@@ -59,6 +62,8 @@ if [ "$(uname)" == "Darwin" ]; then
 
   # Copy over Minecraft to env root
   cp -r ${SRC_DIR}/build/install/Minecraft ${PREFIX}/Minecraft
+  # Copy over Schemas Directory to env root
+  cp -r ${SRC_DIR}/build/install/Schemas ${PREFIX}/MalmoSchemas
   # Copy over MalmoPython.so to python site packages
   cp ${SRC_DIR}/build/install/Python_Examples/MalmoPython.so ${SP_DIR}/
 
@@ -86,8 +91,17 @@ if [ "$(uname)" == "Linux" ]; then
 
   # Copy over Minecraft to env root
   cp -r ${SRC_DIR}/build/install/Minecraft ${PREFIX}/Minecraft
+  # Copy over Schemas Directory to env root
+  cp -r ${SRC_DIR}/build/install/Schemas ${PREFIX}/MalmoSchemas
   # Copy over MalmoPython.so to python site packages
   cp ${SRC_DIR}/build/install/Python_Examples/MalmoPython.so ${SP_DIR}/
+  
+  # Copy Over env vars setup scripts
+  mkdir -p ${PREFIX}/etc/conda/activate.d
+  mkdir -p ${PREFIX}/etc/conda/deactivate.d
+  cp ${RECIPE_DIR}/extra_files/env_setup/env_activate.sh ${PREFIX}/etc/conda/activate.d/malmo.sh
+  cp ${RECIPE_DIR}/extra_files/env_setup/env_deactivate.sh ${PREFIX}/etc/conda/deactivate.d/malmo.sh
+  # This sets the MALMO_XSD_PATH path variable and any other required variables
 
   cp -r ${SRC_DIR}/build/install ${PREFIX}/install
   ln -s ${PREFIX}/Minecraft/launchClient.sh ${PREFIX}/bin/launchClient.sh
