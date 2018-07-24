@@ -20,8 +20,8 @@ requirements:
     - mono
     - doxygen
     - curl
-    - toolchain # [linux and not py36]
-    - gcc # [linux and py36]
+    - toolchain # [linux] #Manually remove it during linux+py36 build 
+    - gcc # [linux and py36] #Manually remove it during linux+py37 build 
     - pthread-stubs # [linux]
     - swig # [linux]
     - icu # [linux]
@@ -32,8 +32,8 @@ requirements:
     - openjdk 8.*
     - mono
     - curl
-    - toolchain # [linux and not py36]
-    - gcc # [linux and py36]
+    - toolchain # [linux] #Manually remove it during linux+py36 build 
+    - gcc # [linux and py36] #Manually remove it during linux+py37 build 
     - pthread-stubs # [linux]
     - swig # [linux]
     - icu # [linux]
