@@ -73,9 +73,6 @@ if [ "$(uname)" == "Darwin" ]; then
   cp -r ${SRC_DIR}/build/install ${PREFIX}/install
   ln -s ${PREFIX}/Minecraft/launchClient.sh ${PREFIX}/bin/launchClient.sh
   chmod +x ${PREFIX}/bin/launchClient.sh
-  ln -s ${PREFIX}/Minecraft/launch_minecraft_in_background.py ${PREFIX}/bin/launch_minecraft_in_background.py
-  chmod +x ${PREFIX}/bin/launch_minecraft_in_background.py
-
 fi
 
 if [ "$(uname)" == "Linux" ]; then
@@ -111,9 +108,6 @@ if [ "$(uname)" == "Linux" ]; then
   cp -r ${SRC_DIR}/build/install ${PREFIX}/install
   ln -s ${PREFIX}/Minecraft/launchClient.sh ${PREFIX}/bin/launchClient.sh
   chmod +x ${PREFIX}/bin/launchClient.sh
-  ln -s ${PREFIX}/Minecraft/launch_minecraft_in_background.py ${PREFIX}/bin/launch_minecraft_in_background.py
-  chmod +x ${PREFIX}/bin/launch_minecraft_in_background.py
-  
 fi
 
 # exit 1
