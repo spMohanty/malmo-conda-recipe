@@ -6,7 +6,6 @@ source:
   git_url: https://github.com/Microsoft/malmo.git
   git_rev: 0.35.6
 
-
 build:
   number: 1
 
@@ -17,7 +16,7 @@ requirements:
     - boost 1.67
     - ffmpeg
     - openjdk 8.*
-    - mono
+    - mono # [not win64]
     - doxygen
     - curl
     - toolchain # [linux and not py36] 
@@ -25,12 +24,13 @@ requirements:
     - pthread-stubs # [linux]
     - swig # [linux]
     - icu # [linux]
+    - make
   run:
     - python {{ python }}
     - boost 1.67
     - ffmpeg
     - openjdk 8.*
-    - mono
+    - mono # [not win64]
     - curl
     - toolchain # [linux and not py36] 
     - gcc # [linux and py36] 
