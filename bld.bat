@@ -28,17 +28,28 @@ set TERM=%TERM%:-dumb
 
 @echo PATH : %PATH%
 
-xcopy /S /Q /Y /F %RECIPE_DIR%\extra_files\CMakeLists.txt %SRC_DIR%\CMakeLists.txt
+
 
 set JAVA_INCLUDE_PATH2=%PREFIX%\Library\include
 @echo JAVA_INCLUDE_PATH2 : %JAVA_INCLUDE_PATH2%
+set ZLIB_LIBRARY=%PREFIX%\Library\lib
+@echo ZLIB_LIBRARY : %ZLIB_LIBRARY%
+
+set ZLIB_BINARY=%PREFIX%\Library\bin\zlib.dll
+set ZLIB_INCLUDE=%PREFIX%\Library\include\
+set ZLIB_LIBPATH=%PREFIX%\Library\lib\
+
+set Boost_INCLUDE_DIR=%PREFIX%\Library\lib\boost
+
+@echo F | xcopy /S /Q /Y /F  %RECIPE_DIR%\extra_files\FindBoost.cmake %SRC_DIR%\cmake\FindBoost.cmake
+
 
 REM sed -i -e "s/\"python3\"/\"python%CONDA_PY%\"/g" CMakeLists.txt
 REM  from : SET( BOOST_PYTHON_MODULE_NAME "python3" )
 REM  to : SET( BOOST_PYTHON_MODULE_NAME "python36" ) (or "python37") depending on the python build.
 REM  This lets FindBoost find where boost and boost_python are
 
-cmake -DBUILD_DOCUMENTATION=Off -DJAVA_INCLUDE_PATH2=%JAVA_INCLUDE_PATH2% -DINCLUDE_CSHARP=Off -DCMAKE_INSTALL_PREFIX=%PREFIX% -DSTATIC_BOOST=On -DUSE_PYTHON_VERSIONS_DESC=%PYTHON_VERSION% ../
+cmake -DBoost_DEBUG=1 -DBOOST_ROOT=%PREFIX%\Library\lib\boost -DBUILD_DOCUMENTATION=Off -DJAVA_INCLUDE_PATH2=%JAVA_INCLUDE_PATH2% -DINCLUDE_CSHARP=Off -DCMAKE_INSTALL_PREFIX=%PREFIX% -DSTATIC_BOOST=On -DUSE_PYTHON_VERSIONS_DESC=%PYTHON_VERSION% ../
 
 REM  -j%NUMBER_OF_PROCESSORS%
 cmake --build . --config Release --target install

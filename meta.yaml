@@ -12,7 +12,7 @@ build:
 requirements:
   build:
     - python {{ python }}
-    - cmake
+    - cmake 3.11.1
     - boost 1.67
     - ffmpeg
     - openjdk 8.*
@@ -39,6 +39,7 @@ requirements:
     - curl
     - toolchain # [linux and not py36]
     - zlib # [win]
+
 
     - vs2015_runtime # [win]
     - swig # [win64]

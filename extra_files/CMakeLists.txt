@@ -109,20 +109,14 @@ if ( USE_PYTHON_VERSIONS VERSION_GREATER 3 )
     if ( APPLE )
         SET( BOOST_PYTHON_MODULE_NAME ${MACOS_USE_PYTHON_MODULE} )
     else()
-        SET( BOOST_PYTHON_MODULE_NAME "python36" )
+        SET( BOOST_PYTHON_MODULE_NAME "python3" )
     endif()
 endif()
 
 
-if( WIN32 )
-  SET(Boost_USE_STATIC_LIBS ON)
-  find_package( Boost COMPONENTS chrono date_time filesystem iostreams program_options ${BOOST_PYTHON_MODULE_NAME} regex system thread REQUIRED )
-else()
-  find_package( Boost COMPONENTS chrono date_time filesystem iostreams program_options ${BOOST_PYTHON_MODULE_NAME} regex system thread REQUIRED )
-  set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-  find_package( Threads REQUIRED )
-  SET(Boost_USE_STATIC_LIBS ${STATIC_BOOST})
-endif()
+SET(Boost_USE_STATIC_LIBS ON)
+find_package( Boost COMPONENTS chrono date_time filesystem iostreams program_options ${BOOST_PYTHON_MODULE_NAME} regex system thread zlib REQUIRED )
+
 
 # suggested install paths - see readme.md
 if( NOT WIN32)
