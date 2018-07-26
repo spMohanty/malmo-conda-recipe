@@ -19,10 +19,15 @@ requirements:
     - mono # [not win64]
     - doxygen
     - curl
-    - toolchain # [linux and not py36] 
-    - gcc # [linux and py36] 
+    - toolchain # [linux and not py36]
+    - vs2015_runtime # [win]
+    - zlib # [win]
+
+    - unxutils # [win]
+    - gcc # [linux and py36]
     - pthread-stubs # [linux]
     - swig # [linux]
+    - swig # [win64]
     - icu # [linux]
     - make
   run:
@@ -32,7 +37,11 @@ requirements:
     - openjdk 8.*
     - mono # [not win64]
     - curl
-    - toolchain # [linux and not py36] 
+    - toolchain # [linux and not py36]
+    - zlib # [win]
+
+    - vs2015_runtime # [win]
+    - swig # [win64]
     - gcc # [linux and py36] 
     - pthread-stubs # [linux]
     - swig # [linux]
